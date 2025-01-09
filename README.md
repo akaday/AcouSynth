@@ -39,3 +39,35 @@ AcouSynth now uses FFTW or PyFFTW for FFT computation, providing optimized perfo
 - Optimized data handling to minimize memory usage and improve efficiency
 - Parallel processing techniques to speed up FFT computation for large datasets
 - Robust handling of edge cases and input data validation
+
+## Noise Filtering for Formants
+
+AcouSynth includes a feature for noise filtering to create formants. This allows users to add noise components (such as white, pink, or brown noise) and filter them to create formants, emulating the resonant frequencies of vocal tract shapes or instrument bodies.
+
+## Flexible Spectral Envelope
+
+AcouSynth provides tools to manipulate the spectral envelope to shape the timbre of the sound over time. Users can utilize filter banks, spectral shaping, and smoothing functions to dynamically adjust the sound’s character.
+
+## Effects Modules
+
+AcouSynth includes advanced sound design techniques such as:
+- Subharmonics: Generate lower harmonics for deeper tones.
+- Jitter Effects: Introduce random variations in pitch, amplitude, or timing for more organic or "shaky" sound characteristics.
+- Pitch Modulation: Control pitch bending and vibrato effects.
+
+## Syllabic Sound Generation
+
+AcouSynth allows users to create sound sequences representing human vocalizations by combining basic sounds (such as vowels or consonants) into syllabic structures. This feature enables the synthesis of synthetic speech, vocal-like sounds, or speech-like textures in non-verbal contexts (e.g., sound design for film or virtual environments).
+
+## Real-Time Acoustic Analysis
+
+AcouSynth implements real-time tools for spectral analysis (Fourier Transforms, spectrograms). Users can analyze harmonic structure, noise characteristics, and dynamic changes in sound over time.
+
+## Parameter Control
+
+AcouSynth provides a user interface (either graphical or code-based) to manipulate parameters such as:
+- Amplitude envelopes
+- Harmonic content (fundamental frequency and overtones)
+- Noise components (spectrum and intensity)
+- Formant frequencies (for vocal-like sound)
+- Temporal evolution (attack, sustain, decay, and release)
