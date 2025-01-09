@@ -1,6 +1,7 @@
 import pyfftw.interfaces.numpy_fft as fftw
 from scipy.signal import find_peaks
-from src.harmonic_sounds_module import combine_sine_and_noise
+from src.harmonic_sounds_module import combine_sine_and_noise, generate_complex_acoustic_phenomena
+from src.acoustic_analysis_module import generate_synthetic_speech
 
 def integrate_theoretical_acoustics_with_practical_synthesis(sound, sample_rate=44100):
     """
@@ -93,3 +94,25 @@ def generate_harmonic_sound(fundamental_freq, harmonics, duration, sample_rate=4
     for harmonic, amplitude in harmonics:
         sound += amplitude * np.sin(2 * np.pi * harmonic * fundamental_freq * t)
     return sound
+
+def integrate_new_tools_with_existing_tools(sine_waves, noise_components, spectral_envelopes, pitch, formant_freqs, formant_bandwidths, duration, sample_rate=44100):
+    """
+    Integrate the new tools with the existing tools.
+
+    Parameters:
+    - sine_waves: A list of numpy arrays containing the sine wave data.
+    - noise_components: A list of numpy arrays containing the noise component data.
+    - spectral_envelopes: A list of numpy arrays containing the spectral envelope data.
+    - pitch: The pitch of the synthetic speech (in Hz).
+    - formant_freqs: A list of formant frequencies to be emphasized.
+    - formant_bandwidths: A list of bandwidths for each formant frequency.
+    - duration: The duration of the synthetic speech (in seconds).
+    - sample_rate: The sample rate of the sound (in samples per second).
+
+    Returns:
+    - A numpy array containing the integrated sound.
+    """
+    complex_acoustic_phenomena = generate_complex_acoustic_phenomena(sine_waves, noise_components, spectral_envelopes, sample_rate)
+    synthetic_speech = generate_synthetic_speech(pitch, formant_freqs, formant_bandwidths, duration, sample_rate)
+    integrated_sound = combine_sine_and_noise(complex_acoustic_phenomena, synthetic_speech)
+    return integrated_sound

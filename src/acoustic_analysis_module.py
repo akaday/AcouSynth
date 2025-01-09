@@ -136,3 +136,23 @@ def apply_pitch_modulation(sound, modulation_freq, modulation_depth, sample_rate
     t = np.linspace(0, len(sound) / sample_rate, len(sound), endpoint=False)
     modulated_sound = sound * np.sin(2 * np.pi * modulation_freq * t) * modulation_depth
     return modulated_sound
+
+def generate_synthetic_speech(pitch, formant_freqs, formant_bandwidths, duration, sample_rate=44100):
+    """
+    Generate synthetic speech using advanced synthesis techniques.
+
+    Parameters:
+    - pitch: The pitch of the synthetic speech (in Hz).
+    - formant_freqs: A list of formant frequencies to be emphasized.
+    - formant_bandwidths: A list of bandwidths for each formant frequency.
+    - duration: The duration of the synthetic speech (in seconds).
+    - sample_rate: The sample rate of the synthetic speech (in samples per second).
+
+    Returns:
+    - A numpy array containing the generated synthetic speech.
+    """
+    t = np.linspace(0, duration, int(sample_rate * duration), endpoint=False)
+    speech = np.sin(2 * np.pi * pitch * t)
+    for formant_freq, bandwidth in zip(formant_freqs, formant_bandwidths):
+        speech *= np.exp(-bandwidth * t) * np.sin(2 * np.pi * formant_freq * t)
+    return speech
