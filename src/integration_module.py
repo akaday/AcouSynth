@@ -1,5 +1,6 @@
 import numpy as np
 from scipy.signal import find_peaks
+from src.harmonic_sounds_module import combine_sine_and_noise
 
 def integrate_theoretical_acoustics_with_practical_synthesis(sound, sample_rate=44100):
     """
@@ -19,6 +20,9 @@ def integrate_theoretical_acoustics_with_practical_synthesis(sound, sample_rate=
     integrated_sound = generate_harmonic_sound(freqs[0], harmonic_ratios, len(sound) / sample_rate, sample_rate)
     for formant_freq, bandwidth in formants:
         integrated_sound *= np.exp(-bandwidth * np.linspace(0, len(sound) / sample_rate, len(sound))) * np.sin(2 * np.pi * formant_freq * np.linspace(0, len(sound) / sample_rate, len(sound)))
+    
+    noise_component = generate_noise(len(sound) / sample_rate, sample_rate)
+    integrated_sound = combine_sine_and_noise(integrated_sound, noise_component)
     
     return integrated_sound
 

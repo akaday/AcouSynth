@@ -37,3 +37,30 @@ def generate_formant_sound(fundamental_freq, formants, duration, sample_rate=441
     for formant_freq, bandwidth in formants:
         sound *= np.exp(-bandwidth * t) * np.sin(2 * np.pi * formant_freq * t)
     return sound
+
+def generate_noise(duration, sample_rate=44100):
+    """
+    Generate a noise component.
+
+    Parameters:
+    - duration: The duration of the noise (in seconds).
+    - sample_rate: The sample rate of the noise (in samples per second).
+
+    Returns:
+    - A numpy array containing the generated noise.
+    """
+    return np.random.normal(0, 1, int(sample_rate * duration))
+
+def combine_sine_and_noise(sine_wave, noise_component, noise_level=0.5):
+    """
+    Combine a sine wave and a noise component.
+
+    Parameters:
+    - sine_wave: A numpy array containing the sine wave data.
+    - noise_component: A numpy array containing the noise component data.
+    - noise_level: The level of the noise component to be combined with the sine wave (default is 0.5).
+
+    Returns:
+    - A numpy array containing the combined sound.
+    """
+    return sine_wave + noise_level * noise_component
