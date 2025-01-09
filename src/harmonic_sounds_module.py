@@ -64,3 +64,77 @@ def combine_sine_and_noise(sine_wave, noise_component, noise_level=0.5):
     - A numpy array containing the combined sound.
     """
     return sine_wave + noise_level * noise_component
+
+def synthesize_vocal_sound(fundamental_freq, formants, harmonics, duration, sample_rate=44100):
+    """
+    Synthesize a vocal-like sound.
+
+    Parameters:
+    - fundamental_freq: The fundamental frequency of the sound (in Hz).
+    - formants: A list of tuples, where each tuple contains the formant frequency and its bandwidth.
+    - harmonics: A list of tuples, where each tuple contains the harmonic number and its amplitude.
+    - duration: The duration of the sound (in seconds).
+    - sample_rate: The sample rate of the sound (in samples per second).
+
+    Returns:
+    - A numpy array containing the synthesized vocal sound.
+    """
+    harmonic_sound = generate_harmonic_sound(fundamental_freq, harmonics, duration, sample_rate)
+    formant_sound = generate_formant_sound(fundamental_freq, formants, duration, sample_rate)
+    noise = generate_noise(duration, sample_rate)
+    vocal_sound = combine_sine_and_noise(harmonic_sound + formant_sound, noise)
+    return vocal_sound
+
+def synthesize_instrument_sound(fundamental_freq, harmonics, duration, sample_rate=44100):
+    """
+    Synthesize an instrument sound.
+
+    Parameters:
+    - fundamental_freq: The fundamental frequency of the sound (in Hz).
+    - harmonics: A list of tuples, where each tuple contains the harmonic number and its amplitude.
+    - duration: The duration of the sound (in seconds).
+    - sample_rate: The sample rate of the sound (in samples per second).
+
+    Returns:
+    - A numpy array containing the synthesized instrument sound.
+    """
+    harmonic_sound = generate_harmonic_sound(fundamental_freq, harmonics, duration, sample_rate)
+    noise = generate_noise(duration, sample_rate)
+    instrument_sound = combine_sine_and_noise(harmonic_sound, noise)
+    return instrument_sound
+
+def synthesize_non_verbal_communication(fundamental_freq, formants, duration, sample_rate=44100):
+    """
+    Synthesize non-verbal communication sounds.
+
+    Parameters:
+    - fundamental_freq: The fundamental frequency of the sound (in Hz).
+    - formants: A list of tuples, where each tuple contains the formant frequency and its bandwidth.
+    - duration: The duration of the sound (in seconds).
+    - sample_rate: The sample rate of the sound (in samples per second).
+
+    Returns:
+    - A numpy array containing the synthesized non-verbal communication sound.
+    """
+    formant_sound = generate_formant_sound(fundamental_freq, formants, duration, sample_rate)
+    noise = generate_noise(duration, sample_rate)
+    non_verbal_sound = combine_sine_and_noise(formant_sound, noise)
+    return non_verbal_sound
+
+def synthesize_sound_effect(fundamental_freq, harmonics, duration, sample_rate=44100):
+    """
+    Synthesize sound effects.
+
+    Parameters:
+    - fundamental_freq: The fundamental frequency of the sound (in Hz).
+    - harmonics: A list of tuples, where each tuple contains the harmonic number and its amplitude.
+    - duration: The duration of the sound (in seconds).
+    - sample_rate: The sample rate of the sound (in samples per second).
+
+    Returns:
+    - A numpy array containing the synthesized sound effect.
+    """
+    harmonic_sound = generate_harmonic_sound(fundamental_freq, harmonics, duration, sample_rate)
+    noise = generate_noise(duration, sample_rate)
+    sound_effect = combine_sine_and_noise(harmonic_sound, noise)
+    return sound_effect

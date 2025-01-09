@@ -1,6 +1,7 @@
 import pyfftw.interfaces.numpy_fft as fftw
 from scipy.signal import find_peaks
 from src.harmonic_sounds_module import combine_sine_and_noise
+from src.harmonic_sounds_module import synthesize_vocal_sound, synthesize_instrument_sound, synthesize_non_verbal_communication, synthesize_sound_effect
 
 def integrate_theoretical_acoustics_with_practical_synthesis(sound, sample_rate=44100):
     """
@@ -93,3 +94,64 @@ def generate_harmonic_sound(fundamental_freq, harmonics, duration, sample_rate=4
     for harmonic, amplitude in harmonics:
         sound += amplitude * np.sin(2 * np.pi * harmonic * fundamental_freq * t)
     return sound
+
+def integrate_vocal_synthesis(fundamental_freq, formants, harmonics, duration, sample_rate=44100):
+    """
+    Integrate vocal synthesis.
+
+    Parameters:
+    - fundamental_freq: The fundamental frequency of the sound (in Hz).
+    - formants: A list of tuples, where each tuple contains the formant frequency and its bandwidth.
+    - harmonics: A list of tuples, where each tuple contains the harmonic number and its amplitude.
+    - duration: The duration of the sound (in seconds).
+    - sample_rate: The sample rate of the sound (in samples per second).
+
+    Returns:
+    - A numpy array containing the integrated vocal sound.
+    """
+    return synthesize_vocal_sound(fundamental_freq, formants, harmonics, duration, sample_rate)
+
+def integrate_instrument_synthesis(fundamental_freq, harmonics, duration, sample_rate=44100):
+    """
+    Integrate instrument synthesis.
+
+    Parameters:
+    - fundamental_freq: The fundamental frequency of the sound (in Hz).
+    - harmonics: A list of tuples, where each tuple contains the harmonic number and its amplitude.
+    - duration: The duration of the sound (in seconds).
+    - sample_rate: The sample rate of the sound (in samples per second).
+
+    Returns:
+    - A numpy array containing the integrated instrument sound.
+    """
+    return synthesize_instrument_sound(fundamental_freq, harmonics, duration, sample_rate)
+
+def integrate_non_verbal_communication(fundamental_freq, formants, duration, sample_rate=44100):
+    """
+    Integrate non-verbal communication synthesis.
+
+    Parameters:
+    - fundamental_freq: The fundamental frequency of the sound (in Hz).
+    - formants: A list of tuples, where each tuple contains the formant frequency and its bandwidth.
+    - duration: The duration of the sound (in seconds).
+    - sample_rate: The sample rate of the sound (in samples per second).
+
+    Returns:
+    - A numpy array containing the integrated non-verbal communication sound.
+    """
+    return synthesize_non_verbal_communication(fundamental_freq, formants, duration, sample_rate)
+
+def integrate_sound_effect_design(fundamental_freq, harmonics, duration, sample_rate=44100):
+    """
+    Integrate sound effect design.
+
+    Parameters:
+    - fundamental_freq: The fundamental frequency of the sound (in Hz).
+    - harmonics: A list of tuples, where each tuple contains the harmonic number and its amplitude.
+    - duration: The duration of the sound (in seconds).
+    - sample_rate: The sample rate of the sound (in samples per second).
+
+    Returns:
+    - A numpy array containing the integrated sound effect.
+    """
+    return synthesize_sound_effect(fundamental_freq, harmonics, duration, sample_rate)
