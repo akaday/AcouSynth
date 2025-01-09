@@ -64,3 +64,66 @@ def combine_sine_and_noise(sine_wave, noise_component, noise_level=0.5):
     - A numpy array containing the combined sound.
     """
     return sine_wave + noise_level * noise_component
+
+def generate_syllabic_sound(vowels, consonants, structure, duration, sample_rate=44100):
+    """
+    Create sound sequences representing human vocalizations by combining basic sounds (such as vowels or consonants) into syllabic structures.
+
+    Parameters:
+    - vowels: A list of vowel sounds.
+    - consonants: A list of consonant sounds.
+    - structure: A list of tuples representing the syllabic structure (e.g., [('vowel', 0), ('consonant', 1), ('vowel', 2)]).
+    - duration: The duration of each sound component (in seconds).
+    - sample_rate: The sample rate of the sound (in samples per second).
+
+    Returns:
+    - A numpy array containing the generated syllabic sound.
+    """
+    syllabic_sound = np.array([])
+    for element, index in structure:
+        if element == 'vowel':
+            syllabic_sound = np.concatenate((syllabic_sound, vowels[index]))
+        elif element == 'consonant':
+            syllabic_sound = np.concatenate((syllabic_sound, consonants[index]))
+    return syllabic_sound
+
+def real_time_spectral_analysis(sound, sample_rate=44100):
+    """
+    Implement real-time tools for spectral analysis (Fourier Transforms, spectrograms).
+
+    Parameters:
+    - sound: A numpy array containing the sound data.
+    - sample_rate: The sample rate of the sound (in samples per second).
+
+    Returns:
+    - A tuple containing the frequencies, times, and spectrogram of the sound.
+    """
+    from scipy.signal import spectrogram
+    frequencies, times, spectrogram_data = spectrogram(sound, sample_rate)
+    return frequencies, times, spectrogram_data
+
+def control_parameters(sound, amplitude_envelope, harmonic_content, noise_component, formant_frequencies, temporal_evolution, sample_rate=44100):
+    """
+    Manipulate parameters such as amplitude envelopes, harmonic content, noise components, formant frequencies, and temporal evolution.
+
+    Parameters:
+    - sound: A numpy array containing the sound data.
+    - amplitude_envelope: A numpy array containing the amplitude envelope data.
+    - harmonic_content: A list of tuples representing the harmonic content (e.g., [(harmonic_number, amplitude)]).
+    - noise_component: A numpy array containing the noise component data.
+    - formant_frequencies: A list of formant frequencies to be emphasized.
+    - temporal_evolution: A dictionary containing the temporal evolution parameters (e.g., {'attack': 0.1, 'sustain': 0.7, 'decay': 0.1, 'release': 0.1}).
+    - sample_rate: The sample rate of the sound (in samples per second).
+
+    Returns:
+    - A numpy array containing the sound with manipulated parameters.
+    """
+    t = np.linspace(0, len(sound) / sample_rate, len(sound), endpoint=False)
+    manipulated_sound = sound * amplitude_envelope
+    for harmonic, amplitude in harmonic_content:
+        manipulated_sound += amplitude * np.sin(2 * np.pi * harmonic * t)
+    manipulated_sound += noise_component
+    for formant_freq in formant_frequencies:
+        manipulated_sound *= np.sin(2 * np.pi * formant_freq * t)
+    manipulated_sound *= np.exp(-temporal_evolution['decay'] * t) * np.sin(2 * np.pi * temporal_evolution['attack'] * t)
+    return manipulated_sound
