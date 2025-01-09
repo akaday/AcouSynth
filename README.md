@@ -71,3 +71,19 @@ AcouSynth provides a user interface (either graphical or code-based) to manipula
 - Noise components (spectrum and intensity)
 - Formant frequencies (for vocal-like sound)
 - Temporal evolution (attack, sustain, decay, and release)
+
+## New Features and Capabilities
+
+AcouSynth has been enhanced with new features and capabilities to further improve its functionality and versatility. These new features include:
+
+- Synthetic Speech Generation: AcouSynth can now generate synthetic speech using advanced synthesis techniques. This feature allows users to create realistic and expressive speech sounds for various applications.
+- Complex Acoustic Phenomena Generation: AcouSynth can now generate complex acoustic phenomena by combining sine waves, noise components, and parametric spectral envelopes. This feature enables the simulation of natural sounds, musical instruments, and other acoustic phenomena.
+- Integration with Existing Tools: AcouSynth seamlessly integrates with existing tools and workflows, allowing users to leverage its capabilities alongside their current setup. This integration ensures a smooth and efficient workflow for sound design and analysis.
+
+### Updated Usage and Capabilities
+
+The updated usage and capabilities of AcouSynth reflect the new features and enhancements. The following sections provide an overview of the updated functionality:
+
+- Synthetic Speech Generation: Users can generate synthetic speech by specifying the desired speech parameters, such as pitch, formant frequencies, and temporal evolution. AcouSynth provides functions to manipulate these parameters and create realistic speech sounds.
+- Complex Acoustic Phenomena Generation: Users can generate complex acoustic phenomena by combining sine waves, noise components, and parametric spectral envelopes. AcouSynth provides functions to control the harmonic content, noise characteristics, and spectral envelope to create a wide range of sounds.
+- Integration with Existing Tools: AcouSynth integrates with existing tools and workflows, allowing users to combine its capabilities with their current setup. This integration ensures a seamless and efficient workflow for sound design and analysis.

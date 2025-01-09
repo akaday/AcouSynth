@@ -5,7 +5,8 @@ from src.acoustic_analysis_module import (
     manipulate_spectral_envelope,
     apply_subharmonics,
     apply_jitter_effects,
-    apply_pitch_modulation
+    apply_pitch_modulation,
+    generate_synthetic_speech
 )
 
 class TestAcousticAnalysisModule(unittest.TestCase):
@@ -49,6 +50,15 @@ class TestAcousticAnalysisModule(unittest.TestCase):
         modulated_sound = apply_pitch_modulation(self.sound, modulation_freq, modulation_depth, self.sample_rate)
         self.assertEqual(len(modulated_sound), len(self.sound))
         self.assertTrue(np.any(modulated_sound))
+
+    def test_generate_synthetic_speech(self):
+        pitch = 100
+        formant_freqs = [500, 1500, 2500]
+        formant_bandwidths = [50, 75, 100]
+        duration = 1.0
+        synthetic_speech = generate_synthetic_speech(pitch, formant_freqs, formant_bandwidths, duration, self.sample_rate)
+        self.assertEqual(len(synthetic_speech), int(self.sample_rate * duration))
+        self.assertTrue(np.any(synthetic_speech))
 
 if __name__ == '__main__':
     unittest.main()

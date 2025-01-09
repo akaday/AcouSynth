@@ -7,7 +7,8 @@ from src.harmonic_sounds_module import (
     combine_sine_and_noise,
     generate_syllabic_sound,
     real_time_spectral_analysis,
-    control_parameters
+    control_parameters,
+    generate_complex_acoustic_phenomena
 )
 
 class TestHarmonicSoundsModule(unittest.TestCase):
@@ -27,6 +28,9 @@ class TestHarmonicSoundsModule(unittest.TestCase):
         self.noise_component = np.random.normal(0, 1, len(self.t))
         self.formant_frequencies = [500, 1500, 2500]
         self.temporal_evolution = {'attack': 0.1, 'sustain': 0.7, 'decay': 0.1, 'release': 0.1}
+        self.sine_waves = [np.sin(2 * np.pi * 440 * self.t), np.sin(2 * np.pi * 660 * self.t)]
+        self.noise_components = [np.random.normal(0, 1, len(self.t)), np.random.normal(0, 1, len(self.t))]
+        self.spectral_envelopes = [np.linspace(1, 0, len(self.t)), np.linspace(0, 1, len(self.t))]
 
     def test_generate_harmonic_sound(self):
         sound = generate_harmonic_sound(self.fundamental_freq, self.harmonics, self.duration, self.sample_rate)
@@ -75,6 +79,16 @@ class TestHarmonicSoundsModule(unittest.TestCase):
         )
         self.assertEqual(len(manipulated_sound), len(self.t))
         self.assertTrue(np.any(manipulated_sound))
+
+    def test_generate_complex_acoustic_phenomena(self):
+        complex_acoustic_phenomena = generate_complex_acoustic_phenomena(
+            self.sine_waves,
+            self.noise_components,
+            self.spectral_envelopes,
+            self.sample_rate
+        )
+        self.assertEqual(len(complex_acoustic_phenomena), len(self.t))
+        self.assertTrue(np.any(complex_acoustic_phenomena))
 
 if __name__ == '__main__':
     unittest.main()

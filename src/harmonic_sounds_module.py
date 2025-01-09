@@ -127,3 +127,21 @@ def control_parameters(sound, amplitude_envelope, harmonic_content, noise_compon
         manipulated_sound *= np.sin(2 * np.pi * formant_freq * t)
     manipulated_sound *= np.exp(-temporal_evolution['decay'] * t) * np.sin(2 * np.pi * temporal_evolution['attack'] * t)
     return manipulated_sound
+
+def generate_complex_acoustic_phenomena(sine_waves, noise_components, spectral_envelopes, sample_rate=44100):
+    """
+    Generate complex acoustic phenomena by combining sine waves, noise components, and parametric spectral envelopes.
+
+    Parameters:
+    - sine_waves: A list of numpy arrays containing the sine wave data.
+    - noise_components: A list of numpy arrays containing the noise component data.
+    - spectral_envelopes: A list of numpy arrays containing the spectral envelope data.
+    - sample_rate: The sample rate of the sound (in samples per second).
+
+    Returns:
+    - A numpy array containing the generated complex acoustic phenomena.
+    """
+    combined_sound = np.zeros_like(sine_waves[0])
+    for sine_wave, noise_component, spectral_envelope in zip(sine_waves, noise_components, spectral_envelopes):
+        combined_sound += combine_sine_and_noise(sine_wave, noise_component) * spectral_envelope
+    return combined_sound
