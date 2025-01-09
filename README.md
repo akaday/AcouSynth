@@ -27,3 +27,15 @@ The Harmonic Sounds and Formants module includes the following features:
 - Functions for generating formants with adjustable formant structures
 - Functions for generating noise components and combining them with sine waves
 - Integration with other modules in AcouSynth for seamless sound design and analysis
+
+## FFTW Integration
+
+AcouSynth now uses FFTW or PyFFTW for FFT computation, providing optimized performance for real-time analysis. This integration ensures efficient and accurate frequency spectrum analysis, making it a valuable tool for both sound design and acoustic analysis.
+
+### Benefits of FFTW Integration
+
+- Improved performance for FFT computation
+- Compatibility with existing code and functionality
+- Optimized data handling to minimize memory usage and improve efficiency
+- Parallel processing techniques to speed up FFT computation for large datasets
+- Robust handling of edge cases and input data validation

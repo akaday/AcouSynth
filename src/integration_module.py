@@ -1,4 +1,4 @@
-import numpy as np
+import pyfftw.interfaces.numpy_fft as fftw
 from scipy.signal import find_peaks
 from src.harmonic_sounds_module import combine_sine_and_noise
 
@@ -38,8 +38,8 @@ def analyze_frequency_spectrum(sound, sample_rate=44100):
     - A tuple containing the frequencies and their corresponding amplitudes.
     """
     n = len(sound)
-    freqs = np.fft.fftfreq(n, 1/sample_rate)
-    spectrum = np.abs(np.fft.fft(sound))
+    freqs = fftw.fftfreq(n, 1/sample_rate)
+    spectrum = np.abs(fftw.fft(sound))
     return freqs[:n//2], spectrum[:n//2]
 
 def detect_formants(sound, sample_rate=44100, num_formants=5):
